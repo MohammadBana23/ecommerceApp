@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Simple ecommerce</string>
+    <string name="submit">Submit</string>
+    <string name="password">password</string>
+    <string name="username">username</string>
 </resources>
