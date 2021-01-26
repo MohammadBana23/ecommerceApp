@@ -3,4 +3,7 @@
     <string name="submit">Submit</string>
     <string name="password">password</string>
     <string name="username">username</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="back_to_login">Back to login</string>
 </resources>

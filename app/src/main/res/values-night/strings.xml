@@ -2,4 +2,6 @@
 <resources>
     <string name="submit" />
     <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="back_to_login">Back to login</string>
 </resources>
