@@ -1,4 +1,4 @@
-package com.example.simpleecommerce;
+package com.example.simpleecommerce.userPage;
 
 import com.google.gson.annotations.SerializedName;
 
