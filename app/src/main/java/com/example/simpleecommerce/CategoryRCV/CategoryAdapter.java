@@ -1,4 +1,4 @@
-package com.example.simpleecommerce.categoryRCV;
+package com.example.simpleecommerce.CategoryRCV;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,21 +7,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.simpleecommerce.OnCategoryRecyclerViewItemClickListener;
 import com.example.simpleecommerce.R;
-import com.example.simpleecommerce.categoryRCV.Category;
-import com.example.simpleecommerce.categoryRCV.CategoryVH;
 
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryVH> {
     private List<Category> categoryList;
-    public void setData(List<Category> categoryList){
+    private OnCategoryRecyclerViewItemClickListener listener;
+    public void setData(List<Category> categoryList,OnCategoryRecyclerViewItemClickListener listener){
         this.categoryList = categoryList;
+        this.listener = listener;
     }
     @NonNull
     @Override
     public CategoryVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rc_products,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rc_categories,parent,false);
         return new CategoryVH(view);
     }
 
@@ -32,6 +33,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryVH> {
         String description = category.getDescription();
         holder.txtCategoryName.setText(name);
         holder.txtCategoryDescription.setText(description);
+        holder.categoryCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(position);
+            }
+        });
     }
 
     @Override

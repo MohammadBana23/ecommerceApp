@@ -1,4 +1,4 @@
-package com.example.simpleecommerce.categoryRCV;
+package com.example.simpleecommerce.CategoryRCV;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpleecommerce.ApiClient;
 import com.example.simpleecommerce.MyEndPoints.CategoryEndPoints;
+import com.example.simpleecommerce.OnCategoryRecyclerViewItemClickListener;
+import com.example.simpleecommerce.ProductRCV.ProductFragment;
 import com.example.simpleecommerce.R;
-import com.example.simpleecommerce.categoryRCV.Category;
-import com.example.simpleecommerce.categoryRCV.CategoryAdapter;
 
 import java.util.List;
 
@@ -41,7 +41,16 @@ public class CategoryFragment extends Fragment {
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 if (response.code() == 200){
                     List<Category> categories = response.body();
-                    categoryAdapter.setData(categories);
+                    categoryAdapter.setData(categories, new OnCategoryRecyclerViewItemClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            Category category = categories.get(position);
+                            assert getFragmentManager() != null;
+                            getFragmentManager().beginTransaction().
+                                    replace(R.id.main_container,ProductFragment.newInstance(category.getId())).
+                                    commit();
+                        }
+                    });
                     recyclerView.setAdapter(categoryAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(),RecyclerView.VERTICAL,false));
                 }

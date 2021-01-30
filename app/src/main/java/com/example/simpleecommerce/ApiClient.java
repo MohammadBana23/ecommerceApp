@@ -1,6 +1,7 @@
 package com.example.simpleecommerce;
 
 import com.example.simpleecommerce.MyEndPoints.CategoryEndPoints;
+import com.example.simpleecommerce.MyEndPoints.ProductEndPoints;
 import com.example.simpleecommerce.MyEndPoints.UserEndPoints;
 
 import retrofit2.Retrofit;
@@ -10,7 +11,7 @@ public class ApiClient {
 
     private static ApiClient INSTANCE = null;
 
-    private static final String BASE_URL = "http://192.168.1.50:9797/api/v1/";
+    private static final String BASE_URL = "http://192.168.1.51:9797/api/v1/";
     private Retrofit retrofit;
     private ApiClient(){
         retrofit = new Retrofit.Builder()
@@ -31,5 +32,9 @@ public class ApiClient {
     public CategoryEndPoints getCategoryEndPoints(){
         return retrofit.create(CategoryEndPoints.class);
     }
+    public ProductEndPoints getProductEndPoints(){
+        return retrofit.create(ProductEndPoints.class);
+    }
+
 
 }

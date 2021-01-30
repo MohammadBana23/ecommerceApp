@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.simpleecommerce.categoryRCV.CategoryFragment;
+import com.example.simpleecommerce.CategoryRCV.CategoryFragment;
 
 public class MainActivity extends AppCompatActivity {
 
