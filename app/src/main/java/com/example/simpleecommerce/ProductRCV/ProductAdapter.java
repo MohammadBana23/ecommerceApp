@@ -8,14 +8,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpleecommerce.R;
+import com.example.simpleecommerce.OnProductRecyclerViewItemClickListener;
 
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductVH> {
     private List<Product> productList;
+    private OnProductRecyclerViewItemClickListener listener;
     public void setData(List<Product> productList){
         this.productList = productList;
     }
+
+    public void setListener(OnProductRecyclerViewItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public ProductVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -27,13 +34,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductVH> {
     public void onBindViewHolder(@NonNull ProductVH holder, int position) {
         Product product = productList.get(position);
         String name = product.getName();
-        String description = product.getDescription();
-        int rate = product.getRate();
-        int price = product.getPrice();
+//        String description = product.getDescription();
+//        int rate = product.getRate();
+//        int price = product.getPrice();
         holder.txtProductName.setText("Name : "+ name);
-        holder.txtProductDescription.setText("Description : " + description);
-        holder.txtProductRate.setText("Rate : "+ String.valueOf(rate));
-        holder.txtProductPrice.setText("Price : "+String.valueOf(price));
+//        holder.txtProductDescription.setText("Description : " + description);
+//        holder.txtProductRate.setText("Rate : "+ String.valueOf(rate));
+//        holder.txtProductPrice.setText("Price : "+String.valueOf(price));
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(position,product);
+            }
+        });
 
     }
 

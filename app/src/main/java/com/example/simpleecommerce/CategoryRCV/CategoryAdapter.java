@@ -3,10 +3,12 @@ package com.example.simpleecommerce.CategoryRCV;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.simpleecommerce.MainActivity;
 import com.example.simpleecommerce.OnCategoryRecyclerViewItemClickListener;
 import com.example.simpleecommerce.R;
 
@@ -15,7 +17,7 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryVH> {
     private List<Category> categoryList;
     private OnCategoryRecyclerViewItemClickListener listener;
-    public void setData(List<Category> categoryList,OnCategoryRecyclerViewItemClickListener listener){
+    public void setData(List<Category> categoryList, OnCategoryRecyclerViewItemClickListener listener){
         this.categoryList = categoryList;
         this.listener = listener;
     }

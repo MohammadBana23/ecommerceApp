@@ -6,4 +6,7 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign up</string>
     <string name="back_to_login">Back to login</string>
+    <string name="name">Name</string>
+    <string name="products">Products</string>
+    <string name="category">Category</string>
 </resources>

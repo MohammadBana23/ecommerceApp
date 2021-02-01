@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import com.example.simpleecommerce.ApiClient;
 import com.example.simpleecommerce.MyEndPoints.ProductEndPoints;
 import com.example.simpleecommerce.CategoryRCV.Category;
 import com.example.simpleecommerce.R;
+import com.example.simpleecommerce.OnProductRecyclerViewItemClickListener;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ import retrofit2.Response;
 public class ProductFragment extends Fragment {
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
+    TextView textView;
 
     public static ProductFragment newInstance(String id) {
 
@@ -44,6 +47,7 @@ public class ProductFragment extends Fragment {
         Category category = new Category();
 
         String categoryId  = getArguments().getString("CAT_ID");
+        textView = view.findViewById(R.id.txt_category);
 
 
         productAdapter = new ProductAdapter();
@@ -55,7 +59,20 @@ public class ProductFragment extends Fragment {
                 List<Product> products = response.body();
                 productAdapter.setData(products);
                 recyclerView.setAdapter(productAdapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext(),RecyclerView.VERTICAL,false));
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()
+                        ,RecyclerView.VERTICAL,false));
+                productAdapter.setListener(new OnProductRecyclerViewItemClickListener() {
+                    @Override
+                    public void onClick(int position, Product product) {
+                        Product myProduct = products.get(position);
+                        assert getFragmentManager() != null;
+                        getFragmentManager().beginTransaction().
+                                replace(R.id.main_container, ProductDetails.newInstance
+                                        (myProduct.getName(),myProduct.getDescription()
+                                                ,myProduct.getPrice(),myProduct.getRate())).
+                                commit();
+                    }
+                });
             }
 
             @Override
@@ -63,6 +80,12 @@ public class ProductFragment extends Fragment {
 
             }
         });
+
+
         return view;
     }
+//    public int makeToast() {
+//        Toast.makeText(getActivity(),"There aren't any category",Toast.LENGTH_LONG).show();
+//        return 0;
+//    }
 }

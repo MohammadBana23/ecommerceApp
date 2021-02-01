@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +28,7 @@ import retrofit2.Response;
 public class CategoryFragment extends Fragment {
     RecyclerView recyclerView;
     CategoryAdapter categoryAdapter;
+    TextView textView;
 
     @Nullable
     @Override
@@ -33,6 +36,8 @@ public class CategoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.rc_category_fragment,container,false);
         categoryAdapter = new CategoryAdapter();
         recyclerView = view.findViewById(R.id.rc_category);
+        textView = view.findViewById(R.id.txt_category);
+
 
 
         CategoryEndPoints service = ApiClient.getInstance().getCategoryEndPoints();
@@ -63,4 +68,5 @@ public class CategoryFragment extends Fragment {
         });
         return view;
     }
+
 }

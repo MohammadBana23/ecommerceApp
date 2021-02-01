@@ -4,4 +4,7 @@
     <string name="password">password</string>
     <string name="login">Login</string>
     <string name="back_to_login">Back to login</string>
+    <string name="name">Name</string>
+    <string name="products">Products</string>
+    <string name="category">Category</string>
 </resources>

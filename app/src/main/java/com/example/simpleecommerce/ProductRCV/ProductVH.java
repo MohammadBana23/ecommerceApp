@@ -11,17 +11,19 @@ import com.example.simpleecommerce.R;
 
 public class ProductVH extends RecyclerView.ViewHolder {
     TextView txtProductName;
-    TextView txtProductDescription;
-    TextView txtProductRate;
-    TextView txtProductPrice;
+//    TextView txtProductDescription;
+//    TextView txtProductRate;
+//    TextView txtProductPrice;
+    CardView cardView;
 
 
     public ProductVH(@NonNull View itemView) {
         super(itemView);
         txtProductName = itemView.findViewById(R.id.txt_product_name);
-        txtProductDescription = itemView.findViewById(R.id.txt_product_description);
-        txtProductRate = itemView.findViewById(R.id.txt_product_rate);
-        txtProductPrice = itemView.findViewById(R.id.txt_product_price);
+//        txtProductDescription = itemView.findViewById(R.id.txt_product_description);
+//        txtProductRate = itemView.findViewById(R.id.txt_product_rate);
+//        txtProductPrice = itemView.findViewById(R.id.txt_product_price);
+        cardView = itemView.findViewById(R.id.product_container);
 
     }
 }
