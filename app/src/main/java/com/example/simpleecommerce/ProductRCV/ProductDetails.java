@@ -1,9 +1,14 @@
 package com.example.simpleecommerce.ProductRCV;
 
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,11 +17,19 @@ import androidx.fragment.app.Fragment;
 
 import com.example.simpleecommerce.R;
 
+import java.util.ArrayList;
+
 public class ProductDetails extends Fragment {
     private TextView detailName;
     private TextView detailDescription;
     private TextView detailRate;
     private TextView detailPrice;
+    ArrayList<String> userList;
+    ArrayAdapter<String> adapter;
+    EditText edtText;
+    Button btnAdd;
+    Button btnDelete;
+    ListView listView;
 
     public static ProductDetails newInstance(String name,String description,int rate,int price) {
         Bundle args = new Bundle();
@@ -38,14 +51,57 @@ public class ProductDetails extends Fragment {
         String productDescription  = getArguments().getString("DESC");
         int  productRate  = getArguments().getInt("RATE");
         int productPrice  = getArguments().getInt("PRICE");
+
+
+
         detailName = view.findViewById(R.id.txt_product_detail_name);
         detailDescription = view.findViewById(R.id.txt_product_detail_description);
         detailRate = view.findViewById(R.id.txt_product_detail_rate);
         detailPrice = view.findViewById(R.id.txt_product_detail_price);
+
+
+
         detailName.setText("Name : " + productName);
         detailDescription.setText("Description : " + productDescription);
         detailRate.setText("Rate : " + productRate);
         detailPrice.setText("Price : " + productPrice);
+
+
+
+        listView = view.findViewById(R.id.lv_of_comment);
+        edtText = view.findViewById(R.id.edt_add_comment);
+        btnAdd = view.findViewById(R.id.btn_add);
+        btnDelete = view.findViewById(R.id.btn_delete);
+        userList = new ArrayList<>();
+        adapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_list_item_multiple_choice,
+                userList);
+        listView.setAdapter(adapter);
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (edtText != null){
+                    userList.add(edtText.getText().toString());
+                    edtText.setText("");
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SparseBooleanArray positionchecker = listView.getCheckedItemPositions();
+                int count = listView.getCount();
+                for (int i = count - 1 ; i >= 0 ; i--){
+                    if (positionchecker.get(i)){
+                        adapter.remove(userList.get(i));
+                    }
+                }
+                positionchecker.clear();
+                adapter.notifyDataSetChanged();
+            }
+        });
         return view;
     }
 }

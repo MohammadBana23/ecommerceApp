@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleEcommerce">
-        <activity android:name=".LoginUserActivity">
+        <activity android:name=".activities.LoginUserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +19,7 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
 
         </activity>
     </application>

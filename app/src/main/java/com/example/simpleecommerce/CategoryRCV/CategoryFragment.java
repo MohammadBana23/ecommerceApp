@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpleecommerce.ApiClient;
 import com.example.simpleecommerce.MyEndPoints.CategoryEndPoints;
-import com.example.simpleecommerce.OnCategoryRecyclerViewItemClickListener;
+import com.example.simpleecommerce.ClickOnRCV.OnCategoryRecyclerViewItemClickListener;
 import com.example.simpleecommerce.ProductRCV.ProductFragment;
 import com.example.simpleecommerce.R;
+import com.example.simpleecommerce.models.Category;
 
 import java.util.List;
 

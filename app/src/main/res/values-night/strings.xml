@@ -7,4 +7,5 @@
     <string name="name">Name</string>
     <string name="products">Products</string>
     <string name="category">Category</string>
+    <string name="remember_me">Remember me</string>
 </resources>

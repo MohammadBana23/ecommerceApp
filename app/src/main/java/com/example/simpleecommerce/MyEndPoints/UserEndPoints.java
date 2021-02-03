@@ -1,6 +1,6 @@
 package com.example.simpleecommerce.MyEndPoints;
 
-import com.example.simpleecommerce.userPage.User;
+import com.example.simpleecommerce.models.User;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;

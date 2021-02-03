@@ -1,9 +1,10 @@
-package com.example.simpleecommerce;
+package com.example.simpleecommerce.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.simpleecommerce.R;
 import com.example.simpleecommerce.userPage.UserLoginFragment;
 
 public class LoginUserActivity extends AppCompatActivity {

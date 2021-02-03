@@ -14,8 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.simpleecommerce.ApiClient;
 import com.example.simpleecommerce.MyEndPoints.UserEndPoints;
 import com.example.simpleecommerce.R;
-import com.example.simpleecommerce.userPage.User;
-import com.example.simpleecommerce.userPage.UserLoginFragment;
+import com.example.simpleecommerce.models.User;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;

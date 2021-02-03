@@ -1,10 +1,11 @@
-package com.example.simpleecommerce;
+package com.example.simpleecommerce.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
 import com.example.simpleecommerce.CategoryRCV.CategoryFragment;
+import com.example.simpleecommerce.R;
 
 public class MainActivity extends AppCompatActivity {
 

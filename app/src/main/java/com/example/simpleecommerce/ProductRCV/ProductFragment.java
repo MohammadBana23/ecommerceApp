@@ -14,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpleecommerce.ApiClient;
 import com.example.simpleecommerce.MyEndPoints.ProductEndPoints;
-import com.example.simpleecommerce.CategoryRCV.Category;
+import com.example.simpleecommerce.models.Category;
 import com.example.simpleecommerce.R;
-import com.example.simpleecommerce.OnProductRecyclerViewItemClickListener;
+import com.example.simpleecommerce.ClickOnRCV.OnProductRecyclerViewItemClickListener;
+import com.example.simpleecommerce.models.Product;
 
 import java.util.List;
 

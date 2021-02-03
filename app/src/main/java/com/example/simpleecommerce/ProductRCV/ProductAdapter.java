@@ -8,7 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpleecommerce.R;
-import com.example.simpleecommerce.OnProductRecyclerViewItemClickListener;
+import com.example.simpleecommerce.ClickOnRCV.OnProductRecyclerViewItemClickListener;
+import com.example.simpleecommerce.models.Product;
 
 import java.util.List;
 

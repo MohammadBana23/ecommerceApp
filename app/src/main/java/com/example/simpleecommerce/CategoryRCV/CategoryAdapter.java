@@ -3,14 +3,13 @@ package com.example.simpleecommerce.CategoryRCV;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.simpleecommerce.MainActivity;
-import com.example.simpleecommerce.OnCategoryRecyclerViewItemClickListener;
+import com.example.simpleecommerce.ClickOnRCV.OnCategoryRecyclerViewItemClickListener;
 import com.example.simpleecommerce.R;
+import com.example.simpleecommerce.models.Category;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.simpleecommerce.ProductRCV;
+package com.example.simpleecommerce.models;
 
 import com.google.gson.annotations.SerializedName;
 

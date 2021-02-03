@@ -1,11 +1,13 @@
 package com.example.simpleecommerce.userPage;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,9 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.simpleecommerce.ApiClient;
-import com.example.simpleecommerce.MainActivity;
 import com.example.simpleecommerce.MyEndPoints.UserEndPoints;
+import com.example.simpleecommerce.RememberMeSharedPref;
+import com.example.simpleecommerce.activities.MainActivity;
 import com.example.simpleecommerce.R;
+import com.example.simpleecommerce.models.User;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
@@ -32,15 +36,32 @@ public class UserLoginFragment extends Fragment {
     private TextInputLayout txtInputPassword;
     private Button btnLogin;
     private Button btnSignUp;
+    private CheckBox chRememberMe;
+    private RememberMeSharedPref rememberMeSharedPref;
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
+    public static final String SHARED_PREF = "shared pref";
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_login_fragment,container,false);
 
+        rememberMeSharedPref = new RememberMeSharedPref(getActivity());
         txtInputUsername = view.findViewById(R.id.txt_input_login_username);
         txtInputPassword = view.findViewById(R.id.txt_input_login_password);
         btnLogin = view.findViewById(R.id.btn_login);
         btnSignUp = view.findViewById(R.id.btn_go_to_signup);
+        chRememberMe = view.findViewById(R.id.chb_remember_me);
+
+
+
+        chRememberMe.setChecked(RememberMeSharedPref.getRememberMe());
+        if (chRememberMe.isChecked()){
+            txtInputUsername.getEditText().setText(rememberMeSharedPref.getUsername());
+            txtInputPassword.getEditText().setText(rememberMeSharedPref.getPassword());
+        }
+
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +79,12 @@ public class UserLoginFragment extends Fragment {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
                             if (response.code() == 200){
+                                RememberMeSharedPref.setRememberMe(chRememberMe.isChecked());
+                                if (chRememberMe.isChecked()){
+                                    rememberMeSharedPref.setUsernameAndPassword(username,password);
+                                }else {
+                                    rememberMeSharedPref.removeUserAndPass();
+                                }
                                 Intent intent = new Intent(getActivity(), MainActivity.class);
                                 startActivity(intent);
                             }else if (response.code() == 401){

@@ -1,6 +1,6 @@
 package com.example.simpleecommerce.MyEndPoints;
 
-import com.example.simpleecommerce.CategoryRCV.Category;
+import com.example.simpleecommerce.models.Category;
 
 import java.util.List;
 

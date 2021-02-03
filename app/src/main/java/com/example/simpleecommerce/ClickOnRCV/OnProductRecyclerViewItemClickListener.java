@@ -1,6 +1,6 @@
-package com.example.simpleecommerce;
+package com.example.simpleecommerce.ClickOnRCV;
 
-import com.example.simpleecommerce.ProductRCV.Product;
+import com.example.simpleecommerce.models.Product;
 
 public interface OnProductRecyclerViewItemClickListener {
     void onClick(int position, Product product);
