@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.simpleecommerce.ApiClient;
-import com.example.simpleecommerce.MyEndPoints.UserEndPoints;
+import com.example.simpleecommerce.MyEndPoints.MyEndPoints;
 import com.example.simpleecommerce.R;
 import com.example.simpleecommerce.models.User;
 import com.google.android.material.textfield.TextInputLayout;
@@ -40,7 +40,7 @@ public class UserSignUpFragment extends Fragment {
         btnSignUp = view.findViewById(R.id.btn_signup);
         btnBackToLogin = view.findViewById(R.id.btn_back_to_login);
 
-        UserEndPoints service = ApiClient.getInstance().getUserEndPoints();
+        MyEndPoints.UserEndPoints service = ApiClient.getInstance().getEndPoints(MyEndPoints.UserEndPoints.class);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.simpleecommerce.ApiClient;
-import com.example.simpleecommerce.MyEndPoints.UserEndPoints;
+import com.example.simpleecommerce.MyEndPoints.MyEndPoints;
 import com.example.simpleecommerce.RememberMeSharedPref;
 import com.example.simpleecommerce.activities.MainActivity;
 import com.example.simpleecommerce.R;
@@ -38,9 +38,7 @@ public class UserLoginFragment extends Fragment {
     private Button btnSignUp;
     private CheckBox chRememberMe;
     private RememberMeSharedPref rememberMeSharedPref;
-    public static final String USERNAME = "username";
-    public static final String PASSWORD = "password";
-    public static final String SHARED_PREF = "shared pref";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -67,7 +65,7 @@ public class UserLoginFragment extends Fragment {
             public void onClick(View v) {
                 String username = txtInputUsername.getEditText().getText().toString().trim();
                 String password = txtInputPassword.getEditText().getText().toString();
-                UserEndPoints service = ApiClient.getInstance().getUserEndPoints();
+                MyEndPoints.UserEndPoints service = ApiClient.getInstance().getEndPoints(MyEndPoints.UserEndPoints.class);
                 JSONObject data = new JSONObject();
                 try {
                     data.put("username",username);

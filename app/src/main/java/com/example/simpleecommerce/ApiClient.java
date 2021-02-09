@@ -1,8 +1,9 @@
 package com.example.simpleecommerce;
 
-import com.example.simpleecommerce.MyEndPoints.CategoryEndPoints;
-import com.example.simpleecommerce.MyEndPoints.ProductEndPoints;
-import com.example.simpleecommerce.MyEndPoints.UserEndPoints;
+
+import com.example.simpleecommerce.MyEndPoints.MyEndPoints;
+
+
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -11,7 +12,7 @@ public class ApiClient {
 
     private static ApiClient INSTANCE = null;
 
-    private static final String BASE_URL = "http://192.168.1.52:9797/api/v1/";
+    private static final String BASE_URL = "http://192.168.170.125:9797/api/v1/";
     private Retrofit retrofit;
     private ApiClient(){
         retrofit = new Retrofit.Builder()
@@ -26,15 +27,10 @@ public class ApiClient {
         }
         return INSTANCE;
     }
-    public UserEndPoints getUserEndPoints(){
-        return retrofit.create(UserEndPoints.class);
+    public <T> T getEndPoints(Class<T> service){
+        return retrofit.create(service);
     }
-    public CategoryEndPoints getCategoryEndPoints(){
-        return retrofit.create(CategoryEndPoints.class);
-    }
-    public ProductEndPoints getProductEndPoints(){
-        return retrofit.create(ProductEndPoints.class);
-    }
+
 
 
 }

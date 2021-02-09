@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpleecommerce.ApiClient;
-import com.example.simpleecommerce.MyEndPoints.CategoryEndPoints;
 import com.example.simpleecommerce.ClickOnRCV.OnCategoryRecyclerViewItemClickListener;
+import com.example.simpleecommerce.MyEndPoints.MyEndPoints;
 import com.example.simpleecommerce.ProductRCV.ProductFragment;
 import com.example.simpleecommerce.R;
 import com.example.simpleecommerce.models.Category;
@@ -40,7 +40,7 @@ public class CategoryFragment extends Fragment {
 
 
 
-        CategoryEndPoints service = ApiClient.getInstance().getCategoryEndPoints();
+        MyEndPoints.CategoryEndPoints service = ApiClient.getInstance().getEndPoints(MyEndPoints.CategoryEndPoints.class);
         service.getAllCategories().enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {

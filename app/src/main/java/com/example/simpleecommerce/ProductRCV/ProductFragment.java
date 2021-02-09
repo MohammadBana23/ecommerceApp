@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpleecommerce.ApiClient;
-import com.example.simpleecommerce.MyEndPoints.ProductEndPoints;
+import com.example.simpleecommerce.MyEndPoints.MyEndPoints;
 import com.example.simpleecommerce.models.Category;
 import com.example.simpleecommerce.R;
 import com.example.simpleecommerce.ClickOnRCV.OnProductRecyclerViewItemClickListener;
@@ -53,7 +53,7 @@ public class ProductFragment extends Fragment {
 
         productAdapter = new ProductAdapter();
         recyclerView = view.findViewById(R.id.rc_product);
-        ProductEndPoints service = ApiClient.getInstance().getProductEndPoints();
+        MyEndPoints.ProductEndPoints service = ApiClient.getInstance().getEndPoints(MyEndPoints.ProductEndPoints.class);
         service.getByCategoryId(categoryId).enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
@@ -70,7 +70,7 @@ public class ProductFragment extends Fragment {
                         getFragmentManager().beginTransaction().
                                 replace(R.id.main_container, ProductDetails.newInstance
                                         (myProduct.getName(),myProduct.getDescription()
-                                                ,myProduct.getPrice(),myProduct.getRate())).
+                                                ,myProduct.getRate(),myProduct.getPrice())).
                                 commit();
                     }
                 });
