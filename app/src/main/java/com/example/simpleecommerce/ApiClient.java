@@ -12,7 +12,7 @@ public class ApiClient {
 
     private static ApiClient INSTANCE = null;
 
-    private static final String BASE_URL = "http://192.168.170.125:9797/api/v1/";
+    private static final String BASE_URL = "http://192.168.43.217:9797/api/v1/";
     private Retrofit retrofit;
     private ApiClient(){
         retrofit = new Retrofit.Builder()

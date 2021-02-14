@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.simpleecommerce.ProductRoomDb.ProductDatabase;
+import com.example.simpleecommerce.ProductRoomDb.ProductRoom;
 import com.example.simpleecommerce.R;
 
 import java.util.ArrayList;
@@ -30,13 +33,16 @@ public class ProductDetails extends Fragment {
     Button btnAdd;
     Button btnDelete;
     ListView listView;
+    ImageView roomDb;
 
-    public static ProductDetails newInstance(String name,String description,int rate,int price) {
+    public static ProductDetails newInstance(String name,String description,int rate,int price,String categoryId , boolean isAvailable) {
         Bundle args = new Bundle();
         args.putString("DESC", description);
         args.putString("NAME", name);
         args.putInt("RATE", rate);
         args.putInt("PRICE", price);
+        args.putString("CATEGORY_ID", categoryId);
+        args.putBoolean("AVAILABLE", isAvailable);
         ProductDetails fragment = new ProductDetails();
         fragment.setArguments(args);
 
@@ -49,11 +55,13 @@ public class ProductDetails extends Fragment {
         View view = inflater.inflate(R.layout.product_detail,container,false);
         String productName  = getArguments().getString("NAME");
         String productDescription  = getArguments().getString("DESC");
+        String productCatId  = getArguments().getString("CATEGORY_ID");
+        Boolean productIsAvailable = getArguments().getBoolean("AVAILABLE");
         int  productRate  = getArguments().getInt("RATE");
         int productPrice  = getArguments().getInt("PRICE");
 
 
-
+        roomDb = view.findViewById(R.id.img_room_db);
         detailName = view.findViewById(R.id.txt_product_detail_name);
         detailDescription = view.findViewById(R.id.txt_product_detail_description);
         detailRate = view.findViewById(R.id.txt_product_detail_rate);
@@ -65,6 +73,21 @@ public class ProductDetails extends Fragment {
         detailDescription.setText("Description : " + productDescription);
         detailRate.setText("Rate : " + productRate);
         detailPrice.setText("Price : " + productPrice);
+
+
+        roomDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProductDatabase productRoomDb = ProductDatabase.getInstance(getActivity());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        productRoomDb.productDao().createProduct(new ProductRoom
+                                (productName,productDescription,productRate,productPrice,productIsAvailable,productCatId));
+                    }
+                }).start();
+            }
+        });
 
 
 

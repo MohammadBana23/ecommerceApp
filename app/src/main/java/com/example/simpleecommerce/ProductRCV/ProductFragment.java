@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpleecommerce.ApiClient;
 import com.example.simpleecommerce.MyEndPoints.MyEndPoints;
+import com.example.simpleecommerce.ProductRoomDb.ProductDatabase;
+import com.example.simpleecommerce.ProductRoomDb.ProductRoom;
 import com.example.simpleecommerce.models.Category;
 import com.example.simpleecommerce.R;
 import com.example.simpleecommerce.ClickOnRCV.OnProductRecyclerViewItemClickListener;
@@ -29,6 +32,7 @@ public class ProductFragment extends Fragment {
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
     TextView textView;
+    ImageView roomDb;
 
     public static ProductFragment newInstance(String id) {
 
@@ -51,6 +55,7 @@ public class ProductFragment extends Fragment {
         textView = view.findViewById(R.id.txt_category);
 
 
+
         productAdapter = new ProductAdapter();
         recyclerView = view.findViewById(R.id.rc_product);
         MyEndPoints.ProductEndPoints service = ApiClient.getInstance().getEndPoints(MyEndPoints.ProductEndPoints.class);
@@ -61,7 +66,7 @@ public class ProductFragment extends Fragment {
                 productAdapter.setData(products);
                 recyclerView.setAdapter(productAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()
-                        ,RecyclerView.VERTICAL,false));
+                        , RecyclerView.VERTICAL, false));
                 productAdapter.setListener(new OnProductRecyclerViewItemClickListener() {
                     @Override
                     public void onClick(int position, Product product) {
@@ -69,9 +74,11 @@ public class ProductFragment extends Fragment {
                         assert getFragmentManager() != null;
                         getFragmentManager().beginTransaction().
                                 replace(R.id.main_container, ProductDetails.newInstance
-                                        (myProduct.getName(),myProduct.getDescription()
-                                                ,myProduct.getRate(),myProduct.getPrice())).
+                                        (myProduct.getName(), myProduct.getDescription()
+                                                , myProduct.getRate(), myProduct.getPrice(),myProduct.getCategoryId(),myProduct.getAvailable())).
                                 commit();
+
+
                     }
                 });
             }
